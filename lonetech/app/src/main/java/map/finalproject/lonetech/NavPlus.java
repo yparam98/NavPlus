@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mapbox.android.core.location.LocationEngine;
 import com.mapbox.android.core.location.LocationEngineCallback;
 import com.mapbox.android.core.location.LocationEngineProvider;
@@ -24,7 +25,6 @@ import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
-import com.mapbox.mapboxsdk.camera.CameraUpdate;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.location.LocationComponent;
@@ -45,7 +45,6 @@ public class NavPlus extends Fragment implements OnMapReadyCallback, MapboxMap.O
     private static final String ACCESS_TOKEN = "pk.eyJ1Ijoicml2YWxkZXZ5cCIsImEiOiJjazRqYjg2MzUwamIzM2lxczg2OWl0bm44In0.nqM7hrdpKkqnEQ4Bk0bNVw";
     private MapView mapView;
     private MapboxMap mapboxMap;
-    private CameraPosition senecaCollegeNewnhamCampus = new CameraPosition.Builder().target(new LatLng(43.794413, -79.350118)).zoom(14).build();
     private Context myContext;
     private PermissionsManager permissionsManager;
     private LocationEngine locationEngine;
@@ -53,15 +52,27 @@ public class NavPlus extends Fragment implements OnMapReadyCallback, MapboxMap.O
     private static final long DEFAULT_MAX_WAIT_TIME = DEFAULT_INTERVAL_IN_MILLISECONDS * 5;
     private LocationChangeListeningActivityLocationCallback callback = new LocationChangeListeningActivityLocationCallback(this);
     private Location userLocation;
+    private FloatingActionButton myLocationButton;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        Mapbox.getInstance(getActivity().getApplicationContext(), ACCESS_TOKEN);
+        myContext = getActivity().getApplicationContext();
+
+        Mapbox.getInstance(myContext, ACCESS_TOKEN);
         View myView = inflater.inflate(R.layout.mapbox, container, false);
 
-        myContext = getActivity().getApplicationContext();
+        myLocationButton = myView.findViewById(R.id.myLocationButton);
+
+        myLocationButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder().target(new LatLng(userLocation.getLatitude(), userLocation.getLongitude())).zoom(17).build()), 7000);
+            }
+        });
 
         mapView = myView.findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
@@ -80,11 +91,8 @@ public class NavPlus extends Fragment implements OnMapReadyCallback, MapboxMap.O
             @Override
             public void onStyleLoaded(@NonNull Style style)
             {
-//                Toast.makeText(getActivity().getApplicationContext(), "Map loaded", Toast.LENGTH_SHORT).show();
-//                mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(senecaCollegeNewnhamCampus), 7000);
-//                mapboxMap.addOnMapClickListener(NavPlus.this);
                 enableLocationComponent(style);
-                mapboxMap.addOnMapClickListener(NavPlus.this);
+//                mapboxMap.addOnMapClickListener(NavPlus.this);
             }
         });
     }
@@ -102,18 +110,17 @@ public class NavPlus extends Fragment implements OnMapReadyCallback, MapboxMap.O
             locationComponent.setCameraMode(CameraMode.TRACKING);
             locationComponent.setRenderMode(RenderMode.COMPASS);
 
-            initLocationEngine();
+            initializeLocationEngine();
         }
         else
         {
-            Log.e("ERROR","NO LOCATION PERMISSIONS");
             permissionsManager = new PermissionsManager(this);
             permissionsManager.requestLocationPermissions(getActivity());
         }
     }
 
     @SuppressLint("MissingPermission")
-    private void initLocationEngine()
+    private void initializeLocationEngine()
     {
         locationEngine = LocationEngineProvider.getBestLocationEngine(myContext);
 
@@ -126,7 +133,6 @@ public class NavPlus extends Fragment implements OnMapReadyCallback, MapboxMap.O
     @Override
     public boolean onMapClick(@NonNull LatLng point)
     {
-        mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder().target(new LatLng(userLocation.getLatitude(), userLocation.getLongitude())).zoom(17).build()), 7000);
         return true;
     }
 

@@ -2,4 +2,5 @@
     <string name="app_name">lonetech</string>
     <string name="application_name">lonetechCA</string>
     <string name="navplus_name">NavPlus</string>
+    <string name="location_query_button_string_literal">location query button</string>
 </resources>
