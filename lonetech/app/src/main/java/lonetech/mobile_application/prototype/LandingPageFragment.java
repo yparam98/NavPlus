@@ -1,4 +1,4 @@
-package map.finalproject.lonetech;
+package lonetech.mobile_application.prototype;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.card.MaterialCardView;
+
+import map.finalproject.lonetech.R;
 
 public class LandingPageFragment extends Fragment
 {

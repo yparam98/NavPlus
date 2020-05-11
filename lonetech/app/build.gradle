@@ -26,7 +26,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation 'com.google.android.material:material:1.2.0-alpha02'
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.0'
+    implementation 'com.google.android.material:material:1.2.0-alpha06'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.2.0'
     implementation 'com.mapbox.mapboxsdk:mapbox-android-navigation:0.42.4'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.4'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-markerview-v9:0.4.0'
 }

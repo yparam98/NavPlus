@@ -1,9 +1,11 @@
-package map.finalproject.lonetech;
+package lonetech.mobile_application.prototype;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+
+import map.finalproject.lonetech.R;
 
 public class MainActivity extends AppCompatActivity
 {
