@@ -19,8 +19,6 @@ public class NavPlus extends Fragment
 {
     private FloatingActionButton myLocationButton;
 
-    private MapView mapView;
-
     private UserLocation userLocationModule;
     private Map mapModule;
     private Search searchModule;
@@ -36,14 +34,15 @@ public class NavPlus extends Fragment
 
         myLocationButton = myView.findViewById(R.id.myLocationButton);
 
-        mapModule = new Map(getActivity().getApplicationContext(), (MapView) myView.findViewById(R.id.mapView), savedInstanceState);
+        mapModule = new Map(getActivity().getApplicationContext());
         userLocationModule = mapModule.getUserLocation();
         searchModule = new Search(userLocationModule, mapModule);
-        mapView = mapModule.getMapView();
         utilityPanel = new UtilityPanel();
 
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.replaceablePanel, searchModule).commit();
+        FragmentTransaction fragmentTransaction_1 = getFragmentManager().beginTransaction();
+        fragmentTransaction_1.replace(R.id.map_replaceable, mapModule).commit();
+        FragmentTransaction fragmentTransaction_2 = getFragmentManager().beginTransaction();
+        fragmentTransaction_2.replace(R.id.replaceablePanel, searchModule).commit();
 
         myLocationButton.setOnClickListener(new View.OnClickListener()
         {
@@ -63,34 +62,29 @@ public class NavPlus extends Fragment
     public void onStart()
     {
         super.onStart();
-        mapView.onStart();
     }
 
     @Override
     public void onResume()
     {
         super.onResume();
-        mapView.onResume();
     }
 
     @Override
     public void onPause()
     {
         super.onPause();
-        mapView.onPause();
     }
 
     @Override
     public void onStop()
     {
         super.onStop();
-        mapView.onStop();
     }
 
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        mapView.onLowMemory();
     }
 
     @Override
@@ -101,6 +95,5 @@ public class NavPlus extends Fragment
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        mapView.onSaveInstanceState(outState);
     }
 }

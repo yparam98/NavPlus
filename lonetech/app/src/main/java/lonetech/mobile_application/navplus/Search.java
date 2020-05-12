@@ -82,44 +82,6 @@ public class Search extends Fragment
         userLocation = userLocationObj;
         utilityPanel = new UtilityPanel();
         map = mapObj;
-
-        // once an item has been selected for search, display a marker and zoom in to the location
-        search_results_list.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
-            {
-                symbolManager.deleteAll();
-
-                search_results_list.setVisibility(View.INVISIBLE);
-                Log.i("AT&T", "item #" + i + " clicked!");
-                utilityPanel.setLocationTextView(search_results.get(i).getAddress());
-                utilityPanel.show();
-                search_box.setText(search_results.get(i).getAddress(), TextView.BufferType.NORMAL);
-
-                Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_my_location_white_24dp, null);
-                Bitmap bitmap = BitmapUtils.getBitmapFromDrawable(drawable);
-
-                map.getMapboxMap().getStyle().addImage("my-marker", bitmap);
-
-                symbolManager.create(new SymbolOptions()
-                        .withLatLng(new LatLng(
-                                search_results.get(i).getCoordinates().latitude(),
-                                search_results.get(i).getCoordinates().longitude()
-                        ))
-                        .withIconImage("my-marker")
-                        .withIconSize(0.75f)
-                        .withTextField(search_results.get(i).getAddress().substring(0, search_results.get(i).getAddress().indexOf(',')))
-                        .withTextAnchor("top")
-                        .withTextHaloWidth(5.0f)
-                        .withTextSize(12f)
-                        .withDraggable(false)
-                        .withTextOffset(new Float[] {0f, 1.5f})
-                );
-
-                map.zoom(new LatLng(search_results.get(i).getCoordinates().latitude(),search_results.get(i).getCoordinates().longitude()));
-            }
-        });
     }
 
     private void search_on_map()
@@ -185,6 +147,44 @@ public class Search extends Fragment
             public void onFailure(Call<GeocodingResponse> call, Throwable t)
             {
                 Log.e("VERIZON", "search failed...");
+            }
+        });
+
+        // once an item has been selected for search, display a marker and zoom in to the location
+        search_results_list.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+            {
+                symbolManager.deleteAll();
+
+                search_results_list.setVisibility(View.INVISIBLE);
+                Log.i("AT&T", "item #" + i + " clicked!");
+                utilityPanel.setLocationTextView(search_results.get(i).getAddress());
+                utilityPanel.show();
+                search_box.setText(search_results.get(i).getAddress(), TextView.BufferType.NORMAL);
+
+                Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_my_location_white_24dp, null);
+                Bitmap bitmap = BitmapUtils.getBitmapFromDrawable(drawable);
+
+                map.getMapboxMap().getStyle().addImage("my-marker", bitmap);
+
+                symbolManager.create(new SymbolOptions()
+                        .withLatLng(new LatLng(
+                                search_results.get(i).getCoordinates().latitude(),
+                                search_results.get(i).getCoordinates().longitude()
+                        ))
+                        .withIconImage("my-marker")
+                        .withIconSize(0.75f)
+                        .withTextField(search_results.get(i).getAddress().substring(0, search_results.get(i).getAddress().indexOf(',')))
+                        .withTextAnchor("top")
+                        .withTextHaloWidth(5.0f)
+                        .withTextSize(12f)
+                        .withDraggable(false)
+                        .withTextOffset(new Float[] {0f, 1.5f})
+                );
+
+                map.zoom(new LatLng(search_results.get(i).getCoordinates().latitude(),search_results.get(i).getCoordinates().longitude()));
             }
         });
     }

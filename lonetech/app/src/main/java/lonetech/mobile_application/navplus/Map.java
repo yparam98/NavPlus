@@ -2,6 +2,9 @@ package lonetech.mobile_application.navplus;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,13 +32,23 @@ public class Map extends Fragment implements OnMapReadyCallback, MapboxMap.OnMap
     private UserLocation userLocation;
     private SymbolManager symbolManager;
 
-    Map(Context incoming_context, MapView incoming_map, @Nullable Bundle incoming_saved_instance)
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+    {
+        Mapbox.getInstance(application_context, getResources().getString(R.string.ACCESS_TOKEN));
+        View view = inflater.inflate(R.layout.map_view, container, false);
+        mapView = view.findViewById(R.id.mapView);
+        mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync(this);
+
+        return view;
+    }
+
+
+    Map(Context incoming_context)
     {
         application_context = incoming_context;
-        Mapbox.getInstance(application_context, getResources().getString(R.string.ACCESS_TOKEN));
-        mapView = incoming_map;
-        mapView.onCreate(incoming_saved_instance);
-        mapView.getMapAsync(this);
     }
 
     public UserLocation getUserLocation()
@@ -87,8 +100,57 @@ public class Map extends Fragment implements OnMapReadyCallback, MapboxMap.OnMap
         return mapboxMap;
     }
 
-    public MapView getMapView()
+    public void getMapView(MapView incoming_map_view)
     {
-        return mapView;
+        incoming_map_view = mapView;
+    }
+
+    @Override
+    @SuppressWarnings( {"MissingPermission"})
+    public void onStart()
+    {
+        super.onStart();
+        mapView.onStart();
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        mapView.onResume();
+    }
+
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        mapView.onPause();
+    }
+
+    @Override
+    public void onStop()
+    {
+        super.onStop();
+        mapView.onStop();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
+    }
+
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+        mapView.onDestroy();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState)
+    {
+        super.onSaveInstanceState(outState);
+        mapView.onSaveInstanceState(outState);
     }
 }

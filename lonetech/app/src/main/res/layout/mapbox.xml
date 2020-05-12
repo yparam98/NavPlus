@@ -5,15 +5,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/map_replaceable"
+        app:layout_constraintLeft_toLeftOf="@id/map_replaceable"
+        app:layout_constraintRight_toRightOf="@id/map_replaceable"
+        android:id="@+id/replaceable">
+    </FrameLayout>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/replaceable">
-    </FrameLayout>"
-
-    <com.mapbox.mapboxsdk.maps.MapView
-        android:id="@+id/mapView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:id="@+id/map_replaceable">
+    </FrameLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
