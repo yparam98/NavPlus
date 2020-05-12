@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="lonetech.mobile_application.prototype.MainActivity">
+        <activity android:name="lonetech.mobile_application.navplus.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,4 +1,4 @@
-package lonetech.mobile_application.prototype;
+package lonetech.mobile_application.navplus;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

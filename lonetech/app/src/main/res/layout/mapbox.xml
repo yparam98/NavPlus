@@ -4,159 +4,16 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/replaceable">
+    </FrameLayout>"
+
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_margin="10dp"
-        app:cardCornerRadius="45dp"
-        android:elevation="20dp"
-        android:backgroundTint="@android:color/background_light"
-        android:id="@+id/searchContainer">
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:id="@+id/myLocationSearchField"
-                android:hint="@string/search_prompt"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:textSize="18sp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="0dp"
-                android:maxLines="2"
-                android:maxLength="40"/>
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_search_black_24dp"
-                android:backgroundTint="@android:color/white"
-                android:layout_alignEnd="@id/myLocationSearchField"
-                android:layout_marginEnd="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:contentDescription="@string/search_button"
-                android:id="@+id/mySearchButton"/>
-
-        </RelativeLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/search_results_list_view"
-        android:layout_margin="10dp"
-        android:background="@color/white"
-        android:visibility="invisible"
-        app:layout_constraintTop_toBottomOf="@id/searchContainer"/>
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/utilitiesContainer"
-        app:layout_constraintBottom_toTopOf="@id/myLocationButton"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_margin="15dp"
-        android:padding="15dp"
-        android:visibility="invisible">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:layout_margin="5dp"
-                android:id="@+id/searchedLocationAddress"/>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="20dp"
-                android:backgroundTint="@android:color/holo_blue_dark"
-                android:layout_below="@id/searchedLocationAddress"
-                android:id="@+id/get_directions_button"
-                android:layout_margin="5dp"
-                android:focusable="true"
-                android:clickable="true">
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="@color/white"
-                    android:text="@string/directions"
-                    android:layout_margin="6dp"/>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="20dp"
-                android:backgroundTint="@android:color/holo_green_dark"
-                android:layout_below="@id/searchedLocationAddress"
-                android:layout_toEndOf="@id/get_directions_button"
-                android:id="@+id/save_location_button"
-                android:layout_margin="5dp"
-                android:focusable="true"
-                android:clickable="true">
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="@color/white"
-                    android:text="@string/save"
-                    android:layout_margin="6dp"/>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="20dp"
-                android:backgroundTint="@android:color/holo_purple"
-                android:layout_below="@id/searchedLocationAddress"
-                android:layout_toEndOf="@id/save_location_button"
-                android:id="@+id/lookup_button"
-                android:layout_margin="5dp"
-                android:focusable="true"
-                android:clickable="true">
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="@color/white"
-                    android:text="@string/look_up"
-                    android:layout_margin="6dp"/>
-
-            </com.google.android.material.card.MaterialCardView>
-
-        </RelativeLayout>
-
-
-    </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"

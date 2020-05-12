@@ -1,4 +1,4 @@
-package lonetech.mobile_application.prototype;
+package lonetech.mobile_application.navplus;
 
 import android.content.Context;
 import android.util.Log;
@@ -10,8 +10,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import com.google.android.material.textview.MaterialTextView;
 
 import java.util.List;
 

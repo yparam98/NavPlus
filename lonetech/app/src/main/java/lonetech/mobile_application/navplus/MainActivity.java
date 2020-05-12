@@ -1,4 +1,4 @@
-package lonetech.mobile_application.prototype;
+package lonetech.mobile_application.navplus;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;

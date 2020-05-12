@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">lonetech</string>
     <string name="application_name">NavPlus+</string>
+    <string name="ACCESS_TOKEN">pk.eyJ1Ijoicml2YWxkZXZ5cCIsImEiOiJjazRqYjg2MzUwamIzM2lxczg2OWl0bm44In0.nqM7hrdpKkqnEQ4Bk0bNVw</string>
     <string name="navplus_name">NavPlus</string>
     <string name="location_query_button_string_literal">location query button</string>
     <string name="search_prompt">Enter search term here...</string>

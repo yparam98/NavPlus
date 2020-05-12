@@ -1,4 +1,4 @@
-package lonetech.mobile_application.prototype;
+package lonetech.mobile_application.navplus;
 
 import android.location.Location;
 
@@ -11,13 +11,14 @@ public class SearchResult
     private Point coordinates;
     private double distanceFromLocation;
     private Location userLocation;
+    private UserLocation userLocationModule;
 
-    SearchResult(CarmenFeature incomingObj, Location incomingUserLocation)
+    SearchResult(CarmenFeature incomingObj)
     {
         this.place_name = incomingObj.placeName();
         this.address = incomingObj.address();
         this.coordinates = incomingObj.center();
-        this.userLocation = incomingUserLocation;
+        this.userLocation = userLocationModule.getLocationModule();
 
         calculateDistance();
     }
